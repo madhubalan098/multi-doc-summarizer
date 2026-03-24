@@ -10,7 +10,7 @@ class SummarizerModule:
         # We can use a lightweight open-source model like sshleifer/distilbart-cnn-12-6 or similar
         # Caution: First run will download the model weights (~1GB)
         print("Loading summarizing model...")
-        self.summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", revision="a4f8f3e")
+        self.summarizer = pipeline("summarization", model="t5-small")
 
     def summarize_chunks(self, chunks):
         if not chunks:

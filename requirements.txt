@@ -1,12 +1,12 @@
+streamlit
+transformers==4.36.2
+torch==2.1.2
+sentencepiece
 langchain
 langchain_community
 sentence-transformers
 faiss-cpu
-transformers
-torch
 spacy
 PyPDF2
 beautifulsoup4
 python-docx
-streamlit
-tf-keras
