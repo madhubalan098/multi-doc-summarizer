@@ -95,3 +95,10 @@ multi_doc_summarizer/
 - Uploaded PDF text quality depends on the PDF containing extractable text; scanned PDFs may need OCR before upload.
 - Contradiction results are model predictions and should be reviewed by a person.
 - The first run can take a while because the required models are downloaded and loaded locally.
+---
+
+## 👨‍💻 Developed By
+**Madhubalan**  
+[GitHub Profile](https://github.com/madhubalan098) | multi-doc-summarizer
+
+---
