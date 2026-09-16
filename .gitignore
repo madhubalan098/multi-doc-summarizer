@@ -26,3 +26,6 @@ Thumbs.db
 
 # Data files (optional - uncomment if you don't want to upload sample docs)
 # data/sample_docs/*
+
+# Archive folder (old unused code)
+archive/
