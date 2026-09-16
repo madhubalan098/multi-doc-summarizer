@@ -1,20 +1,42 @@
 # AI Multi-Document Summarizer
 
-A Streamlit application that combines several documents into a structured AI-generated summary. It also extracts candidate facts, identifies possible contradictions, and displays heuristic reliability scores for each uploaded source.
+A Streamlit application that combines several documents into a structured AI-generated summary. It also extracts candidate facts, identifies possible contradictions, displays heuristic reliability scores, and provides advanced features like entity extraction and semantic similarity analysis.
 
 ## 🚀 Live Demo
 
-**[Access the deployed app here](#)** *(Update this link after deployment)*
+**[Access the deployed app here](https://madhubalan098-multi-doc-summarizer.streamlit.app)** *(Update this link with your actual deployment URL)*
 
-## Features
+## ✨ Key Features
 
-- Upload multiple `.txt`, `.pdf`, and `.docx` documents.
-- Extract and clean document text, then process it in manageable chunks.
-- Create per-chunk summaries with `facebook/bart-large-cnn`.
-- Produce a unified summary with `google/flan-t5-large`.
-- Extract sentence-level candidate facts using spaCy.
-- Detect potential contradictions with `roberta-large-mnli`.
-- Display source-reliability scores and an interactive Plotly chart.
+### Core Capabilities
+- **Multi-Document Summarization:** Upload multiple `.txt`, `.pdf`, and `.docx` documents for unified analysis
+- **Contradiction Detection:** Automatically identifies conflicting information across sources using NLI models
+- **Source Reliability Scoring:** Heuristic-based trustworthiness assessment for each document
+- **Named Entity Extraction:** Automatically extracts people, organizations, and locations with frequency tracking
+- **Semantic Similarity Analysis:** Visualizes how related extracted facts are to each other
+
+### Advanced Features
+- **Customizable Processing:**
+  - Adjustable chunk size (200-600 words)
+  - Summary detail levels (Short / Medium / Detailed)
+  - Toggle entity extraction and visualizations
+- **Interactive Visualizations:**
+  - Reliability bar charts
+  - Document size distribution
+  - Semantic similarity heatmap
+  - Entity frequency charts
+  - Document comparison view
+- **Export Functionality:**
+  - JSON export with complete structured data
+  - Text report export for easy sharing
+  - Timestamped filenames
+
+### User Experience
+- Tab-based navigation for organized results
+- Real-time progress tracking
+- Expandable sections for detailed analysis
+- Side-by-side document comparison
+- Mobile-friendly responsive design
 
 ## Requirements
 
@@ -77,6 +99,23 @@ Reliability is currently a filename-based demonstration heuristic, not a measure
 | Contains `news` | 0.75 |
 | Contains `blog` | 0.50 |
 | Any other filename | 0.70 |
+
+## Technology Stack
+
+### AI Models
+- **DistilBART-CNN-12-6:** Efficient document chunk summarization (~400MB)
+- **FLAN-T5-base:** Instruction-following unified summary generation (~900MB)
+- **DeBERTa-v3-base:** Advanced NLI for contradiction detection (~500MB)
+- **BERT-base-NER:** Named entity recognition for people, organizations, locations
+- **all-MiniLM-L6-v2:** Sentence embeddings for semantic similarity analysis
+
+### Libraries & Tools
+- **Streamlit:** Interactive web application framework
+- **Transformers (Hugging Face):** Pre-trained NLP models
+- **NLTK:** Sentence tokenization
+- **Plotly & Seaborn:** Interactive visualizations
+- **scikit-learn:** Cosine similarity calculations
+- **PyPDF, python-docx:** Document parsing
 
 ## Project structure
 
