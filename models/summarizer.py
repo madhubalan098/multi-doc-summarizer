@@ -3,20 +3,19 @@ from transformers import pipeline, T5Tokenizer, T5ForConditionalGeneration
 
 class Summarizer:
     def __init__(self):
-        # We'll use a smaller model for faster local execution here, or just bart-large-cnn if specified.
-        # But bart-large-cnn is heavy, let's stick to requirements.
-        print("Loading individual summarizer (BART)...")
-        self.indiv_summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+        # Use smaller models for Streamlit Cloud deployment
+        print("Loading individual summarizer (distilbart)...")
+        # distilbart is lighter than bart-large-cnn
+        self.indiv_summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", device=-1)
         
-        print("Loading unified summarizer (FLAN-T5-large)...")
-        # flan-t5-large is quite big (~3GB), using flan-t5-base to keep memory usage reasonable,
-        # but the project asked for flan-t5-large. I will use google/flan-t5-large.
-        self.unified_model_name = "google/flan-t5-large"
+        print("Loading unified summarizer (FLAN-T5-base)...")
+        # Use t5-base instead of t5-large to fit in Streamlit Cloud's 1GB RAM
+        self.unified_model_name = "google/flan-t5-base"
         self.unified_tokenizer = T5Tokenizer.from_pretrained(self.unified_model_name)
         self.unified_model = T5ForConditionalGeneration.from_pretrained(self.unified_model_name)
 
     def summarize_chunk(self, text, max_length=130, min_length=30):
-        # Using BART for chunk summarization
+        # Using distilBART for chunk summarization
         result = self.indiv_summarizer(text, max_length=max_length, min_length=min_length, do_sample=False)
         return result[0]['summary_text']
 

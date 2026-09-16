@@ -2,9 +2,9 @@ from transformers import pipeline
 
 class ContradictionDetector:
     def __init__(self):
-        print("Loading NLI model (roberta-large-mnli)...")
-        # Initialize NLI pipeline with RoBERTa
-        self.nli_pipeline = pipeline("text-classification", model="roberta-large-mnli")
+        print("Loading NLI model (roberta-base-mnli)...")
+        # Use roberta-base instead of roberta-large for deployment
+        self.nli_pipeline = pipeline("text-classification", model="microsoft/deberta-v3-base", device=-1)
     
     def detect_contradictions(self, facts):
         contradictions = []
@@ -18,7 +18,7 @@ class ContradictionDetector:
                 text_input = f"{fact_a} </s></s> {fact_b}"
                 result = self.nli_pipeline(text_input, truncation=True)
                 label = result[0]['label']
-                if label == 'CONTRADICTION':
+                if 'CONTRADICTION' in label.upper():
                     contradictions.append({
                         'Statement 1': fact_a,
                         'Statement 2': fact_b,
